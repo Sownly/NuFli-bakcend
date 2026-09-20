@@ -29,6 +29,7 @@ public class NutritionService {
     private final WeightEntryRepository weightEntryRepository;
     private final NutritionGoalRepository nutritionGoalRepository;
     private final UserRepository userRepository;
+    private final com.sownly.nufli.infrastructure.external.OpenFoodFactsClient openFoodFactsClient;
 
     public NutritionService(
         FoodRepository foodRepository,
@@ -36,7 +37,8 @@ public class NutritionService {
         RecipeRepository recipeRepository,
         WeightEntryRepository weightEntryRepository,
         NutritionGoalRepository nutritionGoalRepository,
-        UserRepository userRepository
+        UserRepository userRepository,
+        com.sownly.nufli.infrastructure.external.OpenFoodFactsClient openFoodFactsClient
     ) {
         this.foodRepository = foodRepository;
         this.mealRepository = mealRepository;
@@ -44,6 +46,7 @@ public class NutritionService {
         this.weightEntryRepository = weightEntryRepository;
         this.nutritionGoalRepository = nutritionGoalRepository;
         this.userRepository = userRepository;
+        this.openFoodFactsClient = openFoodFactsClient;
     }
 
     // ---------------- Foods ----------------
@@ -65,10 +68,15 @@ public class NutritionService {
         return FoodResponse.from(foodRepository.save(food));
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public Page<FoodResponse> searchFoods(UUID userId, String query, Pageable pageable) {
         if (query != null && !query.isBlank()) {
-            return foodRepository.searchFoods(userId, query.trim(), pageable).map(FoodResponse::from);
+            Page<FoodResponse> results = foodRepository.searchFoods(userId, query.trim(), pageable).map(FoodResponse::from);
+            if (results.getNumberOfElements() < 3) {
+                openFoodFactsClient.searchAndCacheFoods(query.trim());
+                results = foodRepository.searchFoods(userId, query.trim(), pageable).map(FoodResponse::from);
+            }
+            return results;
         }
         return foodRepository.findAllAvailable(userId, pageable).map(FoodResponse::from);
     }
