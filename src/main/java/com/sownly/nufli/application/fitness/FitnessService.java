@@ -104,6 +104,8 @@ public class FitnessService {
         Instant start = request.startedAt() != null ? request.startedAt() : Instant.now();
         Workout workout = new Workout(userId, request.routineId(), request.name().trim(), start);
         workout.setNotes(request.notes());
+        if (request.status() != null) workout.setStatus(request.status());
+        if (request.completedAt() != null) workout.setCompletedAt(request.completedAt());
 
         if (request.exercises() != null) {
             for (WorkoutExerciseRequest exReq : request.exercises()) {

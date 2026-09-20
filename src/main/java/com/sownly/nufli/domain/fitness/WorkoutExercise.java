@@ -28,6 +28,7 @@ public class WorkoutExercise {
     private String notes;
 
     @OneToMany(mappedBy = "workoutExercise", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @org.hibernate.annotations.BatchSize(size = 30)
     private List<ExerciseSet> sets = new ArrayList<>();
 
     public WorkoutExercise() {}

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.sownly.nufli.domain.fitness.FitnessCalculatorTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-09-20T20:27:33.780Z" hostname="fedora" time="0.005">
+<testsuite name="com.sownly.nufli.domain.fitness.FitnessCalculatorTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-09-20T20:41:11.039Z" hostname="fedora" time="0.003">
   <properties/>
-  <testcase name="Estimate Cardio Calories Burned: Running (MET 9.8) for 45 min at 75kg" classname="com.sownly.nufli.domain.fitness.FitnessCalculatorTest" time="0.002"/>
-  <testcase name="Calculate Estimated 1RM via Epley: 100kg x 10 reps = 133.33kg" classname="com.sownly.nufli.domain.fitness.FitnessCalculatorTest" time="0.001"/>
-  <testcase name="Calculate Estimated 1RM for 1 rep: exact weight" classname="com.sownly.nufli.domain.fitness.FitnessCalculatorTest" time="0.001"/>
-  <testcase name="Calculate Set Volume: 100kg x 8 reps = 800kg" classname="com.sownly.nufli.domain.fitness.FitnessCalculatorTest" time="0.0"/>
+  <testcase name="Estimate Cardio Calories Burned: Running (MET 9.8) for 45 min at 75kg" classname="com.sownly.nufli.domain.fitness.FitnessCalculatorTest" time="0.0"/>
+  <testcase name="Calculate Estimated 1RM via Epley: 100kg x 10 reps = 133.33kg" classname="com.sownly.nufli.domain.fitness.FitnessCalculatorTest" time="0.0"/>
+  <testcase name="Calculate Estimated 1RM for 1 rep: exact weight" classname="com.sownly.nufli.domain.fitness.FitnessCalculatorTest" time="0.0"/>
+  <testcase name="Calculate Set Volume: 100kg x 8 reps = 800kg" classname="com.sownly.nufli.domain.fitness.FitnessCalculatorTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

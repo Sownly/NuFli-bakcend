@@ -13,12 +13,12 @@ import java.util.UUID;
 
 public interface WorkoutRepository extends JpaRepository<Workout, UUID> {
 
-    @Query("SELECT DISTINCT w FROM Workout w LEFT JOIN FETCH w.exercises we LEFT JOIN FETCH we.exercise LEFT JOIN FETCH we.sets WHERE w.id = :id AND w.userId = :userId")
+    @Query("SELECT DISTINCT w FROM Workout w LEFT JOIN FETCH w.exercises WHERE w.id = :id AND w.userId = :userId")
     Optional<Workout> findByIdAndUserIdWithDetails(@Param("id") UUID id, @Param("userId") UUID userId);
 
     Page<Workout> findByUserIdOrderByStartedAtDesc(UUID userId, Pageable pageable);
 
-    @Query("SELECT DISTINCT w FROM Workout w LEFT JOIN FETCH w.exercises we LEFT JOIN FETCH we.sets WHERE w.userId = :userId AND w.startedAt >= :start AND w.startedAt < :end ORDER BY w.startedAt ASC")
+    @Query("SELECT DISTINCT w FROM Workout w LEFT JOIN FETCH w.exercises WHERE w.userId = :userId AND w.startedAt >= :start AND w.startedAt < :end ORDER BY w.startedAt ASC")
     List<Workout> findByUserIdAndStartedAtBetweenWithDetails(
         @Param("userId") UUID userId,
         @Param("start") Instant start,

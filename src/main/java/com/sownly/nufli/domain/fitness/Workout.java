@@ -41,6 +41,7 @@ public class Workout {
     private Instant createdAt = Instant.now();
 
     @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @org.hibernate.annotations.BatchSize(size = 30)
     private List<WorkoutExercise> exercises = new ArrayList<>();
 
     public Workout() {}
