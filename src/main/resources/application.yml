@@ -5,9 +5,9 @@ spring:
   application:
     name: nufli-backend
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/nufli_db}
-    username: ${SPRING_DATASOURCE_USERNAME:nufli_user}
-    password: ${SPRING_DATASOURCE_PASSWORD:nufli_password}
+    url: ${SPRING_DATASOURCE_URL:${DATABASE_URL:jdbc:postgresql://localhost:5432/nufli_db}}
+    username: ${SPRING_DATASOURCE_USERNAME:${DATABASE_USERNAME:nufli_user}}
+    password: ${SPRING_DATASOURCE_PASSWORD:${DATABASE_PASSWORD:nufli_password}}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
